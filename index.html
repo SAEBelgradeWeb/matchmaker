@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Matchmaker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="main.css">
+	<script src="jquery-1.11.0.min.js"></script>
+
+</head>
+<body onload="splash()">
+	<section id="splash">
+		<h1>Matchmaker Inc</h1>		
+		<h2>Lovely thing that girls will definitelly download a lot!</h2>
+	</section>
+
+	<section id="main">
+		<h1 id="result">--</h1>
+		<h2>How well you two match?</h2>
+		<h3>Please enter your name and the name of the other person</h3>
+		<div>
+			<input type="text" id="name1" placeholder="Name of 1st person">
+		</div>
+
+		<div>
+			<input type="text" id="name2" placeholder="Name of 2nd person">
+		</div>
+		<div>
+			<input type="button" value="Do the magic!" onclick="findMatch()">
+		</div>
+
+
+	</section>
+
+
+
+	<script>
+		
+
+	function splash(){
+		setTimeout(function(){
+			$('#splash').fadeOut();
+			$('#main').fadeIn();
+
+		}, 3000);
+
+	}
+	
+ 
+
+	Math.seededRandom = function(max, min) {
+	    max = max || 1;
+	    min = min || 0;
+	 
+	    Math.seed = (Math.seed * 9301 + 49297) % 233280;
+	    var rnd = Math.seed / 233280;
+	 
+	    return min + rnd * (max - min);
+	}
+
+
+	
+	function findMatch() {
+		//taking the values of two fields
+		var name1 = $("#name1").val();
+		var name2 = $("#name2").val();
+
+
+		var numberOfLetters = name1.length + name2.length;
+
+
+		Math.seed = numberOfLetters;
+
+		var mm = Math.seededRandom() *100;
+
+
+		mm = Math.round(mm);
+		$('#result').text(mm + "%");
+	}
+
+
+
+	</script>
+</body>
+</html>
